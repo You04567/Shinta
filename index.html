@@ -1,498 +1,266 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TOKO PUSAT™</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Shinta</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #FFA07A, #FFC0CB, #DDA);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        .header {
+            color: #76a;
+            text-align: center;
+            position: fixed;
+            top: -15px;
+            left: 0;
+            width: 100%;
+            background-color: transparent; /* Menghapus background header */
+            padding: 0;
+            z-index: 0;
+        }
+        .gallery-title {
+            color: red;
+            text-align: center;
+            position: fixed;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            background-color: #dda;
+            padding: 10px 0; /* Tambahkan sedikit padding atas dan bawah */
+            z-index: 1000;
+        }
+        .container {
+            top: 0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 90%;
+            margin-top: 50px; /* Sesuaikan margin top agar tidak tertutup header tetap */
+            margin-bottom: 5px;
+        }
 
-  <style>
-    body {
-      font-family: Sans-Serif;
-      background-color: #67a;
-      margin: -0px;
-      padding: -0px
-      
-    }
-    .container {
-      background-color: #67a;
-      padding: 10px;
-      max-width: 400px;
-      margin: -10px auto;
-      border-radius: 1px;
-      box-shadow: 0 2px 0px rgba(0,0,0,0.);
-    }
-    h3 {
-      text-align: center; bold;
-      font-size: 16px;
-      color: #d32f2f;
-      background: #fff3cd;
-      border-radius: 5px;
-      padding: -100px;
-      margin: 3px;
-      max-width: 240px;
-    }
-    h4 {
-      margin:2px
-      padding: -30px 0px;
-      margin-top: -0px;
-      text-align: center; bold;
-     
-    }
-    h5 { 
-      position: auto;
-      max-width: 500px;
-      margin-top: -30px;
-    }
-    label, h2, p {
-      display: block;
-      margin-bottom: 2px;
-      font-weight: bold;
-      font-size: 12px;
-      border-radius:
-      background: ;
-    }
-    input[type="text"], input[type="number"] {
-      width: 90%;
-      padding: 10px;
-      border: 1px solid #a67;
-      border-radius: 10px;
-      margin-bottom: 9px;
-      font-size: 10px;
-    }
-    .wallet-options label {
-      display: inline-block;
-      background: #0096;
-      padding: 5px;
-      border-radius: 100px;
-      margin-right: 1px;
-      margin-bottom: 10px;
-      font-size: 12px;
-    }
-    button {
-      background-color: #ff5252;
-      color: black;
-      padding: 10px;
-      width: 100%;
-      border: 10px none;
-      margin-bottom: 10px;
-      border-radius: 100px;
-      font-size: 15px;
-      cursor: pointer;
-    }
-    .qris-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
-    .countdown {
-      text-align: center;
-      font-size: 20px;
-      color: red;
-      margin-top: none;
-    }
-    .qris-actions {
-      text-align: center;
-      margin-top: 15px;
-    }
-    .qris-actions p {
-      background: #e3f2fd;
-      padding: 10px;
-      border-radius: 8px;
-    }
-    .admin-link {
-      position: fixed;
-      margin: 0px;
-      top: -3px;
-      right: 75px;
-      background-color: #a67;
-     color: white;
-     padding: 5px;
-     border-radius: 100px;
-     font-size: 90px;
-     text-decoration: none;
-     z-index: 10000;
-    }
-    #admin-popup {
-      display: none;
-      position: fixed;
-      bottom: 440px;
-      right: 10px;
-      max-width: 250px;
-      background: #ff7;
-      border: 2px solid #a67;
-      border-radius: 10px;
-      padding: 5px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      font-size: 10px;
-    }
+        .gallery-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ukuran item lebih baik */
+            gap: 10px;
+            margin-bottom: 0;
+        }
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            aspect-ratio: 1 / 1;
+        }
 
-    .chatbot-link {
-      position: fixed;
-      top: 5px;
-      right: 10px;
-      background-color: #afc;
-      color: black;
-      padding: 4px 4px;
-      border-radius: 100px;
-      font-size: 8px;
-      font-weight: bold;
-      text-decoration: none;
-    }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            filter: blur(2px);
+            cursor: pointer;
+        }
 
-    #cara-transfer-popup {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 23px;
-      width: 100%;
-      max-width: 300px;
-      background: #fff;
-      border: 5px solid #afc;
-      border-radius: 10px;
-      padding: 5px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      font-size: 14px;
-    }
-    #notifikasi {
-      display: none;
-      text-align: center;
-      background:
-      padding: 20px;
-      margin: auto;
-      border-radius: 50px;
-      font-size: 8px;
-    }
-    footer {
-      text-align: center;
-      font-size: 8px;
-      color: black;
-      margin-top: 10px;
-    }
-  #riwayat-container {
-    border: 1px solid #a67;
-    margin-top: 2px;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #fff;
-  }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Latar belakang overlay lebih gelap */
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
 
-  #riwayat-title {
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-  }
+        .popup {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+        }
 
-  .transaksi-item {
-    border-bottom: 1px dashed #ccc;
-    padding: 8px 0;
-    font-size: 12px;
-    color: #555;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+        .popup-image-container {
+            margin-bottom: 20px;
+        }
 
-  .transaksi-item:last-child {
-    border-bottom: none;
-  }
+        .popup-image {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 5px;
+            filter: blur(10px)
+        }
 
-  .transaksi-info {
-    flex-grow: 1;
-  }
+        .pay-button, .done-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
 
-  .transaksi-aksi {
-    margin-left: 10px;
-  }
-</style>
+        .pay-button:hover, .done-button:hover {
+            background-color: #1e7e34;
+        }
+
+        .qris-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .qris-image-container {
+            margin-bottom: 10px;
+        }
+
+        .qris-image {
+            max-width: 300px;
+            max-height: 300px;
+            filter: none;
+            border-radius: 5px;
+        }
+        .image-title {
+            font-size: 0.8em;
+            color: #555;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        #notification {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0fff0;
+            border: 1px solid #e0eee0;
+            border-radius: 5px;
+            color: green;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.7em;
+            color: #555;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #dda;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
-  <div id="notif"></div>
-  
-<div id="data-container">
-  </div>
-  
-  <div class="container">
-  <h3><marquee>•PASTIKAN SEMUA DATA TERISI DENGAN BENAR SEBELUM MELAKUKAN TRANSAKSI. TOKO PUSAT TIDAK BERTANGGUNG JAWAB ATAS KESALAHAN TRANSAKSI•</marquee></h3><hr
+    <div class="header">
+        <h1 class="gallery-title" ><marquee behavior="alternate"> ← GALLERY SHINTA →</marquee></h1>
+    </div>
+    <div class="container">
+        <p class="header"><marquee><strong>•SELAMAT DATANG SAHABAT SHINTA ❤️ SEMOGA KALIAN SUKA DENGAN KOLEKSI POTO/VIDIO PRIBADI SINTA 💦• </marquee></strong></p>
+        <hr style="border: 1px solid #eee; margin: 10px 0;">
+    <div class="gallery-wrapper">
 
-   <h4><strong>TOKO PUSAT™</strong> APLIKASI TARIK SALDO<br>E-WALLET NON PREMIUM MUDAH DAN CEPAT</center></h4>
-   <h5>__________________</h5>
-
-    <label>NAMA PENERIMA E-WALLET</label>
-    <input type="text" id="nama" placeholder="Masukkan nama penerima e-wallet">
-
-    <label>NOMOR PENERIMA E-WALLET</label>
-    <input type="text" id="telepon" placeholder="Masukkan nomor telepon e-wallet">
-
-    <label>PILIH E-WALLET</label>
-    <div class="wallet-options">
-      <label><input type="radio" name="ewallet" value="DANA"> DANA</label>
-      <label><input type="radio" name="ewallet" value="OVO" checked=""> OVO</label>
-      <label><input type="radio" name="ewallet" value="GOPAY"> GOPAY</label>
+        <div class="gallery-item">
+            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_103631.jpg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_103631.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
+            <p class="image-title">Foto Premium 1</p>
+        </div>
+        </div>
+        </div>
+            <span style="font-size: 0.8em; color: #555;"><strong><center>HANYA DENGAN Rp.5.000,- SAHABAT SHINTA ❤️ SUDAH BISA MELIHAT KOLEKSI POTO/VIDIO PREMIUM SHINTA</center></strong></span>
+    <div id="overlay" class="overlay" onclick="closePopup()">
+        <div id="popupContent" class="popup" onclick="event.stopPropagation()">
+            <div id="imageContainer" class="popup-image-container">
+                <img id="popupImage" class="popup-image" src="" alt="Gambar Popup">
+            </div>
+            <button id="payButton" class="pay-button" onclick="showQRIS()">Bayar</button>
+            <span style="font-size: 0.8em; color: #555;"><strong>(Lanjutkan membayar poto/vidio dengan harga Rp.5.000)</strong></span>
+            <div id="qrisContainer" class="qris-container">
+                <div class="qris-image-container">
+                    <img id="qrisImage" class="qris-image" src="" alt="QRIS">
+                </div>
+                <button class="done-button" onclick="processPayment()">KONFIRMASI</button>
+                <div id="notification"></div>
+                <span style="font-size: 0.8em; color: #555;"><strong>(Scan QRIS untuk membayar)</strong></span>
+            </div>
+        </div>
     </div>
 
-    <label>JUMLAH (Rp)</label>
-    <input type="number" id="jumlah" placeholder="min-10.000">
+    <footer>
+        <p>&copy; 2025 GALLERY SHINTA. Hak Cipta Dilindungi.</p>
+        <p><a href="/kebijakan-privasi">Kebijakan Privasi</a> | <a href="/syarat-dan-ketentuan">Syarat & Ketentuan</a></p>
+    </footer>
 
-    <label>KETERANGAN</label>
-    <input type="text" id="keterangan" placeholder="Keterangan (opsional)">
+    <script>
+        const overlay = document.getElementById('overlay');
+        const popupContent = document.getElementById('popupContent');
+        const popupImage = document.getElementById('popupImage');
+        const payButton = document.getElementById('payButton');
+        const imageContainer = document.getElementById('imageContainer');
+        const qrisContainer = document.getElementById('qrisContainer');
+        const qrisImage = document.getElementById('qrisImage');
+        const notificationDiv = document.getElementById('notification');
+        let currentQRISSource = '';
+        let currentImageSource = '';
 
-    <div id="error-message" style="color:red; margin-bottom: 10px;"></div>
-
-    <button id="bayarBtn">TRANSFER</button>
-
-    <div id="riwayat-container">
-      <h2 id="riwayat-title">Riwayat Transaksi</h2>
-      <div id="riwayat-transaksi">
-        <p style="text-align: center; font-size: 12px; color: #777;">Belum ada transaksi.</p>
-      </div>
-    </div>
-</div>
-
-    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" style="height: 24px;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" style="height: 24px;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="height: 24px;">
-</div>
-</div>
-
-    <div id="qris-section" style="display:none;">
-      <img class="qris-image" src="https://tquynssmoposlcswhaab.supabase.co/storage/v1/object/public/qris//IMG_20250503_095822.png" alt="QRIS">
-      <div class="countdown" id="timer">Sisa waktu: 5:00</div>
-      <div class="qris-actions">
-        <p>SEGERA SCAN QRIS DENGAN E-WALLET ANDA YANG BELUM PREMIUM!</p>
-        <button onclick="selesaiTransaksi()">Selesai</button>
-      </div>
-    </div>
-
-    <div id="notifikasi">
-      <h3><strong><center>Mengunduh file......</center></strong></h3>
-      <p id="dataTransaksi"></p>
-    </div>
-  </div>
-
-<a href="#" class="admin-link" onclick="showAdmin()" style="display: inline-flex; align-items: center; background: none; border: none;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Admin" style="width: 24px; height: 24px;">
-</a>
-
-<div id="admin-popup" style="display: none; background:#fff; padding:20px; border-radius:10px;">
-  <strong>Hubungi Admin:</strong>
-  <p>Silakan hubungi admin jika ada masalah saat transfer.</p>
-  <a href="https://wa.me/" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-         alt="Chat Admin"
-         style="width:24px; height:24px; margin-right:8px;">
-    Chat Admin via WhatsApp
-  </a>
-  <br><br>
-  <button onclick="hideAdmin()">Tutup</button>
-</div>
-</div>
-  <a href="#" class="chatbot-link" onclick="showCaraTransfer()">CARA TRASFER</a>
-  <div id="cara-transfer-popup">
-    <strong>Cara Transfer:</strong>
-    <ol>
-      <li>Isi nama dan nomor e-wallet penerima.</li>
-      <li>Pilih e-wallet dan jumlah saldo.</li>
-      <li>Tekan "Transfer".</li>
-      <li>Scan QRIS dengan e-wallet Anda.</li>
-    </ol>
-    <button onclick="hideCaraTransfer()">Tutup</button>
-  </div>
-    <footer>© 2025 TOKO PUSAT™ DILINDUNGI</footer> 
-  <script>
-      const namaInput = document.getElementById('nama');
-    const teleponInput = document.getElementById('telepon');
-    const jumlahInput = document.getElementById('jumlah');
-    const keteranganInput = document.getElementById('keterangan');
-    const bayarBtn = document.getElementById('bayarBtn');
-    const qrisSection = document.getElementById('qris-section');
-    const timer = document.getElementById('timer');
-    const errorMsg = document.getElementById('error-message');
-    const notifikasiDiv = document.getElementById('notifikasi');
-    const dataTransaksiDiv = document.getElementById('dataTransaksi');
-    const riwayatContainer = document.getElementById('riwayat-container');
-    const riwayatTransaksiDiv = document.getElementById('riwayat-transaksi');
-    const transaksiKey = 'riwayatTransaksiTokoPusat'; 
-    let riwayatTransaksi = loadRiwayat();
-
-    updateRiwayatTransaksi(); 
-
-    function loadRiwayat() {
-      const storedRiwayat = localStorage.getItem(transaksiKey);
-      return storedRiwayat ? JSON.parse(storedRiwayat) : [];
-    }
-
-    function saveRiwayat() {
-      localStorage.setItem(transaksiKey, JSON.stringify(riwayatTransaksi));
-    }
-
-        function updateRiwayatTransaksi() {
-      riwayatTransaksiDiv.innerHTML = '';
-      if (riwayatTransaksi.length === 0) {
-        riwayatTransaksiDiv.innerHTML = '<p style="text-align: center; font-size: 12px; color: #777;">Belum ada transaksi.</p>';
-        return;
-      }
-      riwayatTransaksi.forEach(transaksi => {
-        const div = document.createElement('div');
-        div.classList.add('transaksi-item');
-        const waktuTransaksi = new Date(transaksi.waktu).toLocaleString();
-        div.innerHTML = `
-          <div class="transaksi-info">
-            <strong>Nama:</strong> ${transaksi.nama}<br>
-            <strong>Nomor:</strong> ${transaksi.telepon}<br>
-            <strong>E-Wallet:</strong> ${transaksi.ewallet}<br>
-            <strong>Jumlah:</strong> Rp${transaksi.jumlah}<br>
-            ${transaksi.keterangan ? `<strong>Keterangan:</strong> ${transaksi.keterangan}<br>` : ''}
-            <small>Waktu: ${waktuTransaksi}</small>
-          </div>
-        `;
-        riwayatTransaksiDiv.appendChild(div);
-      });
-    }
-          bayarBtn.addEventListener('click', function () {
-      const namaValue = namaInput.value.trim();
-      const teleponValue = teleponInput.value.trim();
-      const jumlahValue = parseInt(jumlahInput.value.trim());
-
-      if (
-        namaValue === '' ||
-        teleponValue.length < 10 || !/^\d+$/.test(teleponValue) ||
-        isNaN(jumlahValue) || jumlahValue < 10000
-      ) {
-        errorMsg.style.display = 'block';
-        errorMsg.textContent = 'Periksa kembali nama, nomor, dan jumlah saldo (min:Rp10.000)';
-        return;
-      }
-
-      errorMsg.style.display = 'none';
-
-    
-      const notifikasiDiv = document.getElementById('notifikasi');
-      const dataTransaksiDiv = document.getElementById('dataTransaksi');
-      dataTransaksiDiv.innerHTML = '<strong></strong>';
-      notifikasiDiv.style.display = 'block';
-      notifikasiDiv.scrollIntoView({ behavior: 'smooth' });
-
-      
-      setTimeout(() => {
-        notifikasiDiv.style.display = 'none'; 
-        qrisSection.style.display = 'block';
-        startCountdown(300);
-        qrisSection.scrollIntoView({ behavior: 'smooth' });
-
-      
-        const transaksiBaru = {
-          nama: namaInput.value,
-          telepon: teleponInput.value,
-          ewallet: document.querySelector('input[name="ewallet"]:checked').value,
-          jumlah: jumlahInput.value,
-          keterangan: keteranganInput.value,
-          waktu: new Date().toISOString()
-        };
-        riwayatTransaksi.push(transaksiBaru);
-        saveRiwayat();
-        updateRiwayatTransaksi();
-      }, 1500);
-    });
-     
-     const supabaseUrl = 'https://auiqgkujakitkxjxhsjf.supabase.co';
-   const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1aXFna3VqYWtpdGt4anhoc2pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1ODg2NDAsImV4cCI6MjA2MjE2NDY0MH0.d08X0Zqg6YzaeTU2f_aBFT_02Wh9hkrNpVTWA2O82N0';
-   const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-   async function fetchData() {
-  const { data, error } = await supabase
-    .from('riwayat') 
-    .select('*');
-
-  if (error) {
-    console.error('Error fetching riwayat:', error);
-    document.getElementById('data-container').textContent = 'Gagal mengambil data riwayat.';
-    return;
-  }
-
-  if (data) {
-    const dataContainer = document.getElementById('data-container');
-    dataContainer.innerHTML = ''; 
-    data.forEach(item => {
-      const itemElement = document.createElement('p');
-      itemElement.textContent = `ID: ${item.id}, Nama: ${item.nama}, Nomor: ${item.nomor}, Jumlah: ${item.jumlah}, Keterangan: ${item.keterangan}, User ID: ${item.user_id}, Dibuat pada: ${new Date(item.created_at).toLocaleString()}`;
-      dataContainer.appendChild(itemElement);
-    });
-  }
-}
-
-fetchData();
-
-     function selesaiTransaksi() {
-      const dataTransaksi = document.getElementById('dataTransaksi');
-      const notifikasi = document.getElementById('notifikasi');
-
-      dataTransaksi.innerHTML = `
-        <strong>NAMA:</strong> ${namaInput.value}<br>
-        <strong>NOMOR:</strong> ${teleponInput.value}<br>
-        <strong>E-Wallet:</strong> ${document.querySelector('input[name="ewallet"]:checked').value}<br>
-        <strong>JUMLAH:</strong> Rp${jumlahInput.value}<br>
-        <strong>KETERANGAN:</strong> ${keteranganInput.value || '-'}<br>
-        <strong>STATUS:</strong> Diproses
-      `;
-      notifikasi.style.display =
-           notifikasi.scrollIntoView({ behavior: 'smooth' });
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-    }
-
-    function showAdmin() {
-      document.getElementById("admin-popup").style.display = "block";
-    }
-
-    function hideAdmin() {
-      document.getElementById("admin-popup").style.display = "none";
-    }
-
-    function showCaraTransfer() {
-      document.getElementById('cara-transfer-popup').style.display = 'block';
-    }
-
-    function hideCaraTransfer() {
-      document.getElementById('cara-transfer-popup').style.display = 'none';
-    }
-
-    function randomName(){
-      const names = ["An","Mi","Ta", "Pe", "Ke", "Ci", "Ni", "Fa", "Jo", "Bu", "Nu", "Ti", "Re", "Gi", "He"];
-      const name = names[Math.floor(Math.random() * names.length)];
-      return name.charAt(0)+ name.charAt(name.length - 1) + "***";
-    }
-
-    function randomPhone() {
-      const prefixes = ["0812", "0813", "0821", "0822", "0852", "0857", "0881", "0895", "0896"];
-      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-      const end = Math.floor(1000 + Math.random() * 10000);
-      return `${prefix}****${end}`;
-    }
-
-    function randomAmount() {
-      const amounts = [10000,15000,20000,25000,30000,50000,75000,100000, 87000,43000,54000,61000,14000,23000,61000,78000,80000];
-      return "Rp." + amounts[Math.floor(Math.random() * amounts.length)].toLocaleString();
-    }
-
-    function startCountdown(duration) {
-      let interval = setInterval(() => {
-        let minutes = Math.floor(duration / 60);
-        let seconds = duration % 60;
-        timer.textContent = `Sisa waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        if (--duration < 0) {
-          clearInterval(interval);
-          timer.textContent = "Waktu habis";
+        function openPopup(imageSrc, qrisSrc) {
+            currentImageSource = imageSrc;
+            popupImage.src = currentImageSource;
+            imageContainer.innerHTML = `<img id="popupImage" class="popup-image" src="${currentImageSource}" alt="Gambar Popup">`;
+            payButton.style.display = 'block';
+            qrisContainer.style.display = 'none';
+            notificationDiv.style.display = 'none';
+            currentQRISSource = qrisSrc;
+            popupImage.classList.add('blurred');
+            overlay.style.display = 'flex';
         }
-      }, 1000);
-    }
-  </script>
+
+        function closePopup() {
+            overlay.style.display = 'none';
+            popupImage.classList.remove('blurred');
+            imageContainer.innerHTML = `<img id="popupImage" class="popup-image" src="${currentImageSource}" alt="Gambar Popup">`;
+            payButton.style.display = 'block';
+            qrisContainer.style.display = 'none';
+            notificationDiv.style.display = 'none';
+        }
+
+        function showQRIS() {
+            popupImage.classList.remove('blurred');
+            qrisImage.src = currentQRISSource;
+            imageContainer.style.display = 'none';
+            payButton.style.display = 'none';
+            qrisContainer.style.display = 'block';
+            notificationDiv.style.display = 'none';
+        }
+
+        function processPayment() {
+            notificationDiv.textContent = "Pembayaran sedang diproses oleh sistem...";
+            notificationDiv.style.display = 'block';
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        }
+    </script>
 </body>
-    </html>
+</html>
   
