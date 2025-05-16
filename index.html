@@ -95,17 +95,24 @@
             max-width: 100vw;
             max-height: 100vh;
             overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .popup-image-container {
             margin-bottom: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .popup-image {
             max-width: 90%;
             max-height: 70vh;
             border-radius: 5px;
-            filter: blur(10px)
+            filter: blur(10px);
+            display: block; /* Pastikan gambar utama ditampilkan secara default */
         }
 
         .pay-button, .done-button {
@@ -127,6 +134,8 @@
             display: none;
             text-align: center;
             margin-top: 20px;
+            flex-direction: column;
+            align-items: center;
         }
 
         .qris-image-container {
@@ -177,24 +186,24 @@
         <div class="gallery-item">
             <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_103631.jpg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_103631.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
         </div>
-        
+
         <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Susu-Kental-Manis-31.jpeg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Susu-Kental-Manis-31.jpeg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
+            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Susu-Kental-Manis-31.jpeg" alt="Foto Premium 2" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Susu-Kental-Manis-31.jpeg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
         </div>
-        
+
        <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Renna-Colmek-Pakai-Sikat-Gigi.mp4_001797900-1.jpg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Renna-Colmek-Pakai-Sikat-Gigi.mp4_001797900-1.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
+            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Renna-Colmek-Pakai-Sikat-Gigi.mp4_001797900-1.jpg" alt="Foto Premium 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Renna-Colmek-Pakai-Sikat-Gigi.mp4_001797900-1.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
         </div>
-        
+
        <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_151735.jpg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_151735.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
+            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_151735.jpg" alt="Foto Premium 4" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_151735.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
         </div>
             <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/preview.jpg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/preview.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
+            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/preview.jpg" alt="Foto Premium 5" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/preview.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
         </div>
-        
+
     <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Seksi-Bugil-9.jpg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Seksi-Bugil-9.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
+            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Seksi-Bugil-9.jpg" alt="Foto Premium 6" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Seksi-Bugil-9.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
         </div>
         </div>
             <span style="font-size: 0.8em; color: #555;"><center><strong>HANYA DENGAN Rp.5.000,- SAHABAT SHINTA ❤️ SUDAH BISA MELIHAT KOLEKSI POTO PREMIUM SHINTA</strong></center></span>
@@ -254,9 +263,10 @@
 
         function showQRIS() {
             popupImage.classList.remove('blurred');
+            popupImage.style.display = 'none'; // Sembunyikan gambar utama
             qrisImage.src = currentQRISSource;
+            qrisContainer.style.display = 'flex'; // Tampilkan kontainer QRIS sebagai flex
             payButton.style.display = 'none';
-            qrisContainer.style.display = 'block';
             notificationDiv.style.display = 'none';
         }
 
