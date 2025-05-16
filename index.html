@@ -22,25 +22,25 @@
             padding-bottom: 0px;
         }
         .header {
-            color: #76a;
+            color: #fff;
             text-align: center;
             position: fixed;
             top: -15px;
             left: 0;
             width: 100%;
-            background-color: transparent; /* Menghapus background header */
+            background-color: transparent;
             padding: 0;
             z-index: 0;
         }
         .gallery-title {
-            color: red;
+            color: #fff;
             text-align: center;
             position: fixed;
             top: -2px;
             left: 0;
             width: 100%;
-            background-color: #dda;
-            padding: 10px 0; /* Tambahkan sedikit padding atas dan bawah */
+            background-color: #f69;
+            padding: 5px 0px;
             z-index: 1000;
         }
         .container {
@@ -49,13 +49,13 @@
             border-radius: 10px;
             text-align: center;
             max-width: 90%;
-            margin-top: 50px; /* Sesuaikan margin top agar tidak tertutup header tetap */
+            margin-top: 50px;
             margin-bottom: 5px;
         }
 
         .gallery-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ukuran item lebih baik */
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
             gap: 10px;
             margin-bottom: 0;
         }
@@ -71,7 +71,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 10px;
-            filter: blur(5px);
+            filter: blur(0px);
             cursor: pointer;
         }
 
@@ -82,8 +82,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Latar belakang overlay lebih gelap */
-            backdrop-filter: blur(7px);
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(2px);
             justify-content: center;
             align-items: center;
             z-index: 10;
@@ -114,8 +114,8 @@
             max-width: 90%;
             max-height: 70vh;
             border-radius: 5px;
-            filter: blur(10px);
-            display: block; /* Pastikan gambar utama ditampilkan secara default */
+            filter: blur(5px);
+            display: block;
         }
 
         .pay-button, .done-button {
@@ -163,19 +163,6 @@
             color: green;
         }
 
-        footer {
-            text-align: center;
-            padding: 1px 0;
-            font-size: 0.5em;
-            color: #555;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: ;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 0;
-        }
     </style>
 </head>
 <body>
@@ -185,38 +172,100 @@
     <div class="container">
         <p class="header"><marquee><strong>•SELAMAT DATANG SAHABAT SHINTA ❤️ SEMOGA KALIAN SUKA DENGAN KOLEKSI POTO/VIDIO PRIBADI SINTA 💦• </marquee></strong></p>
         <hr style="border: 1px solid #eee; margin: 10px 0;">
-    <div class="gallery-wrapper">
-        <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_103631.jpg" alt="Foto Premium 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_103631.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
-        </div>
-
-        <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Susu-Kental-Manis-31.jpeg" alt="Foto Premium 2" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Susu-Kental-Manis-31.jpeg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
-        </div>
-
-       <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Renna-Colmek-Pakai-Sikat-Gigi.mp4_001797900-1.jpg" alt="Foto Premium 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Renna-Colmek-Pakai-Sikat-Gigi.mp4_001797900-1.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
-        </div>
-
-       <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_151735.jpg" alt="Foto Premium 4" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/IMG_20250516_151735.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
-        </div>
+        <div class="gallery-wrapper" id="supabase-gallery">
             <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/preview.jpg" alt="Foto Premium 5" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/preview.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
-        </div>
-
-    <div class="gallery-item">
-            <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Seksi-Bugil-9.jpg" alt="Foto Premium 6" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris/Foto/Seksi-Bugil-9.jpg', 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg')">
-        </div>
-        </div>
-            <span style="font-size: 0.8em; color: #555;"><center><strong>HANYA DENGAN Rp.5.000,- SAHABAT SHINTA ❤️ SUDAH BISA MELIHAT KOLEKSI POTO PREMIUM SHINTA</strong></center></span>
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213445.jpg" alt="Foto 1" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213445.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213457.jpg" alt="Foto 2" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213457.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213507.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213507.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213517.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213517.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213529.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_213529.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214842.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214842.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214852.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214852.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214908.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214908.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214920.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214920.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214944.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214944.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214955.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_214955.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231432.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231432.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231443.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231443.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231456.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231456.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231520.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_231520.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232447.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232447.jpg')">
+            </div>
+             <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232456.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232456.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232522.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232522.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232533.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232533.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232545.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232545.jpg')">
+            </div>
+            <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232559.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232559.jpg')">
+            </div>
+             <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232610.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232610.jpg')">
+            </div>
+ <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232622.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232622.jpg')">
+            </div>
+ <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232636.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//IMG_20250510_232636.jpg')">
+            </div>
+ <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_13.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_13.jpg')">
+            </div>
+ <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_14.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_14.jpg')">
+            </div>
+ <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_15.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_15.jpg')">
+            </div>
+ <div class="gallery-item">
+                <img src="https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_19.jpg" alt="Foto 3" onclick="openPopup('https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/media//Sexi_19.jpg')">
+            </div>
+            </div>
+    </div>
     <div id="overlay" class="overlay" onclick="closePopup()">
         <div id="popupContent" class="popup" onclick="event.stopPropagation()">
             <div id="imageContainer" class="popup-image-container">
                 <img id="popupImage" class="popup-image" src="" alt="Gambar Popup">
             </div>
             <button id="payButton" class="pay-button" onclick="showQRIS()">Bayar</button>
-            <span style="font-size: 0.8em; color: #555;"><strong>(Lanjutkan membayar poto dengan harga Rp.5.000)</strong></span>
+            <span style="font-size: 0.8em; color: #555;"><strong>(Lanjutkan membayar poto dengan harga Rp.50.000)</strong></span>
             <div id="qrisContainer" class="qris-container">
                 <div class="qris-image-container">
                     <img id="qrisImage" class="qris-image" src="" alt="QRIS">
@@ -229,10 +278,11 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 GALLERY SHINTA. Hak Cipta Dilindungi.</p>
-        <p><a href="/kebijakan-privasi">Kebijakan Privasi</a> | <a href="/syarat-dan-ketentuan">Syarat & Ketentuan</a></p>
+          </div>
+        <span style="font-size: 0.5em; color: #555;"><strong><center>HANYA DENGAN Rp.50.000,- KAMU ❤️ SUDAH BISA MELIHAT KOLEKSI POTO PREMIUM SHINTA</center></strong>
+        <p><center>&copy; 2025 GALLERY SHINTA. Hak Cipta Dilindungi.</p>
+        <p><a href="/kebijakan-privasi">Kebijakan Privasi</a> | <a href="/syarat-dan-ketentuan">Syarat & Ketentuan</a></center></p>
     </footer>
-
     <script>
         const overlay = document.getElementById('overlay');
         const popupContent = document.getElementById('popupContent');
@@ -242,17 +292,16 @@
         const qrisContainer = document.getElementById('qrisContainer');
         const qrisImage = document.getElementById('qrisImage');
         const notificationDiv = document.getElementById('notification');
-        let currentQRISSource = '';
+        const defaultQrisUrl = 'https://jfhcwtsxchweaetsjryf.supabase.co/storage/v1/object/public/qris//1-.jpg';
         let currentImageSource = '';
 
-        function openPopup(imageSrc, qrisSrc) {
+        function openPopup(imageSrc) {
             currentImageSource = imageSrc;
             popupImage.src = currentImageSource;
             payButton.style.display = 'block';
             qrisContainer.style.display = 'none';
             notificationDiv.style.display = 'none';
-            currentQRISSource = qrisSrc;
-            popupImage.classList.add('blurred');
+            qrisImage.src = defaultQrisUrl;
             overlay.style.display = 'flex';
         }
 
@@ -266,9 +315,9 @@
 
         function showQRIS() {
             popupImage.classList.remove('blurred');
-            popupImage.style.display = 'none'; // Sembunyikan gambar utama
-            qrisImage.src = currentQRISSource;
-            qrisContainer.style.display = 'flex'; // Tampilkan kontainer QRIS sebagai flex
+            popupImage.style.display = 'none'; 
+            qrisImage.style.display = 'block'; 
+            qrisContainer.style.display = 'flex';
             payButton.style.display = 'none';
             notificationDiv.style.display = 'none';
         }
@@ -278,7 +327,7 @@
             notificationDiv.style.display = 'block';
             setTimeout(() => {
                 window.location.reload();
-            }, 2000);
+            }, 2500);
         }
     </script>
 </body>
